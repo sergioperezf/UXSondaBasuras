@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import firebase from 'firebase';
-import config from '../local/config';
+import config from './config';
 
 firebase.initializeApp(config);
 
@@ -28,8 +28,8 @@ class App extends Component {
 
   componentWillMount()  {
     Storage.on('value', (snapshot) => {
-        console.log(snapshot.val());
-      });
+      console.log(snapshot.val());
+    });
   }
 }
 
