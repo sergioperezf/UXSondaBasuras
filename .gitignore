@@ -18,7 +18,3 @@ yarn-error.log*
 
 # idea
 .idea
-
-# local files
-local
-!local/.gitkeep
