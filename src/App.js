@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import firebase from 'firebase';
+import config from '../local/config';
+
+firebase.initializeApp(config);
+
+var Database = firebase.database();
+var Storage = Database.ref();
+
+window.Database = Database;
 
 class App extends Component {
   render() {
@@ -15,6 +24,12 @@ class App extends Component {
         </p>
       </div>
     );
+  }
+
+  componentWillMount()  {
+    Storage.on('value', (snapshot) => {
+        console.log(snapshot.val());
+      });
   }
 }
 
