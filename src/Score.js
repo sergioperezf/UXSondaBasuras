@@ -7,22 +7,15 @@ class Score extends Component {
     this.state = {
       currentScore: null
     }
-    this.sendScore = this.sendScore.bind(this);
+
   }
 
-  sendScore() {
-    this.database.ref().child('previousScores').push(this.state.currentScore)
-    this.database.ref('currentScore').set(0)
-    this.setState({
-      currentScore: 0
-    });
-  }
+
 
   render() {
     return (
-      <div>
-        <div className="score">{this.state.currentScore}</div>
-        <button onClick={this.sendScore}>Listo!</button>
+      <div className="score_height">
+        <div className="score_font">Puntaje: {this.state.currentScore}</div>
       </div>
     );
   }

@@ -32,13 +32,57 @@
   background: url('images/slide01.jpg') center 25% no-repeat;
   background-size: cover;
 }
+.basura_img {
+  height: 475px;
+  width: 100%;
+  background: url('images/basuras.png') center 25% no-repeat;
+}
+.abono_img{
+  height: 475px;
+  width: 100%;
+  background: url('images/abono.png') center 25% no-repeat;
+}
+.reciclaje_img{
+  height: 475px;
+  width: 100%;
+  background: url('images/reciclaje.png') center 25% no-repeat;
+}
+
+.flexbox-class{
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+.default-margin{
+  margin-left: 8%;
+  margin-right: 8%;
+}
+/*
+font-family: 'Press Start 2P', cursive;
+font-family: 'Black Ops One', cursive;
+font-family: 'Fredericka the Great', cursive;
+font-family: 'Bungee Inline', cursive;
+*/
+.score_font {
+  font-family: 'Black Ops One', cursive;
+  font-size: 55px;
+  color: red;
+  line-height: 89px;
+  vertical-align: center;
+}
+.score_height {
+    height: 89px;
+}
+
+
 @media (max-width: 900px) {
   .android-be-together-section {
       height: 400px;
   }
   .android-create-character {
     font-size: 16px;
-    padding-top: 70px;
   }
   .android-create-character li {
     /*font-size: 16px;*/
@@ -47,8 +91,4 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
-}
-
-.score {
-  font-size: larger;
 }

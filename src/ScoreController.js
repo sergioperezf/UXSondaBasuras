@@ -19,6 +19,15 @@ class ScoreController extends Component {
     this.decreaseScore = this.decreaseScore.bind(this);
     this.clearScore = this.clearScore.bind(this);
     this.updateScore = this.updateScore.bind(this);
+    this.sendScore = this.sendScore.bind(this);
+  }
+
+  sendScore() {
+    Database.ref().child('previousScores').push(this.state.currentScore)
+    Database.ref('currentScore').set(0)
+    this.setState({
+      currentScore: 0
+    });
   }
 
   updateScore(newScore) {
@@ -41,7 +50,9 @@ class ScoreController extends Component {
       <div>
         <button onClick={this.increaseScore}>Más</button>
         <button onClick={this.decreaseScore}>Menos</button>
+        <button onClick={this.sendScore}>Listo!</button>
         <button onClick={this.clearScore}>Borrar</button>
+
         <div>{this.state.currentScore}</div>
       </div>
 
