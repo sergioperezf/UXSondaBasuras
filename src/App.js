@@ -1,26 +1,30 @@
 import React, { Component } from 'react';
 import './App.css';
-import firebase from 'firebase';
-import config from './config';
 import Score from './Score';
 
-firebase.initializeApp(config);
+import firebase from './Firebase';
 
 const Database = firebase.database();
-const Storage = Database.ref();
 
 window.Database = Database;
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.database = Database;
+  };
+
   render() {
     return (
       <div>
         <h1>Haz ganar a tu facultad</h1>
         <sub>Deposita la basura en las cestas correspondientes y gana puntos.</sub>
-        <Score storage={Storage} />
+        <Score database={this.database} />
       </div>
     );
   }
+
+
 }
 
 export default App;

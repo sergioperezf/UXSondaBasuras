@@ -3,20 +3,28 @@ import React, { Component } from 'react';
 class Score extends Component {
   constructor(props) {
     super(props);
-
+    this.database = props.database;
     this.state = {
-      currentScore: 88
+      currentScore: null
     }
+    this.sendScore = this.sendScore.bind(this);
+  }
+
+  sendScore() {
+    this.database.ref().child('previousScores').push(this.state.currentScore)
   }
 
   render() {
     return (
-      <div className="score">{this.state.currentScore}</div>
+      <div>
+        <div className="score">{this.state.currentScore}</div>
+        <button onClick={this.sendScore}>Listo!</button>
+      </div>
     );
   }
 
   componentWillMount()  {
-    this.props.storage.on('value', (snapshot) => {
+    this.database.ref().on('value', (snapshot) => {
       let data = snapshot.val();
       this.setState({currentScore: data.currentScore})
     });
