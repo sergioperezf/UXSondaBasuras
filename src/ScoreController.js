@@ -47,6 +47,13 @@ class ScoreController extends Component {
 
     )
   }
+
+  componentWillMount()  {
+    Database.ref('currentScore').on('value', (snapshot) => {
+      let data = snapshot.val();
+      this.setState({currentScore: data})
+    });
+  }
 }
 
 

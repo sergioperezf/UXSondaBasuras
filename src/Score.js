@@ -12,6 +12,10 @@ class Score extends Component {
 
   sendScore() {
     this.database.ref().child('previousScores').push(this.state.currentScore)
+    this.database.ref('currentScore').set(0)
+    this.setState({
+      currentScore: 0
+    });
   }
 
   render() {
@@ -24,9 +28,9 @@ class Score extends Component {
   }
 
   componentWillMount()  {
-    this.database.ref().on('value', (snapshot) => {
+    this.database.ref('currentScore').on('value', (snapshot) => {
       let data = snapshot.val();
-      this.setState({currentScore: data.currentScore})
+      this.setState({currentScore: data})
     });
   }
 }
