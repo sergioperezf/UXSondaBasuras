@@ -26,7 +26,7 @@ class LeaderBoard extends Component {
         <div>Previous Scores:</div>
         <ul>
           {this.state.previousScores.map((x, i) =>
-            <li>{x}</li>
+            <li style={{ listStyleType: 'none' }}>{x}</li>
           )}
         </ul>
       </div>

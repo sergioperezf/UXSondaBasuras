@@ -17,11 +17,14 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className="android-be-together-section mdl-typography--text-center">
         <h1>Haz ganar a tu facultad</h1>
-        <sub>Deposita la basura en las cestas correspondientes y gana puntos.</sub>
+        <div className="logo-font android-slogan">Juega por el planeta.</div>
+        <div className="logo-font android-sub-slogan">Deposita la basura en las cestas correspondientes y gana puntos.</div>
         <Score database={this.database} />
-        <LeaderBoard database={this.database}/>
+        <div className="logo-font android-create-character">
+            <LeaderBoard database={this.database}/>
+       </div>
       </div>
     );
   }
