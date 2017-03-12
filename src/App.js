@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Score from './Score';
+import LeaderBoard from './LeaderBoard';
 
 import firebase from './Firebase';
 
@@ -20,6 +21,7 @@ class App extends Component {
         <h1>Haz ganar a tu facultad</h1>
         <sub>Deposita la basura en las cestas correspondientes y gana puntos.</sub>
         <Score database={this.database} />
+        <LeaderBoard database={this.database}/>
       </div>
     );
   }
