@@ -92,3 +92,17 @@ font-family: 'Bungee Inline', cursive;
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.vibrate {
+    animation-name: animation-vibrate;
+    animation-duration: 400ms;
+    animation-iteration-count: 3;
+}
+
+@keyframes animation-vibrate {
+    0%   {  height: 475px; transform: rotate(5deg);}
+    25%  {height: 475px; transform: rotate(-5deg);}
+    50%  { height: 475px; transform: rotate(5deg);}
+    75%  { height: 475px; transform: rotate(-5deg);}
+    100% { height: 475px;  transform: rotate(5deg);}
+}

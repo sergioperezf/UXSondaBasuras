@@ -12,9 +12,9 @@ class ScoreController extends Component {
     super(props);
     this.state = {
       currentScore: 0,
-      step: 100
+      step: 1
     };
-    this.scoreRef = Database.ref('currentScore');
+    this.scoreRef = Database.ref('currentScoreV2');
     this.increaseScore = this.increaseScore.bind(this);
     this.decreaseScore = this.decreaseScore.bind(this);
     this.clearScore = this.clearScore.bind(this);
@@ -24,31 +24,33 @@ class ScoreController extends Component {
 
   sendScore() {
     Database.ref().child('previousScores').push(this.state.currentScore)
-    Database.ref('currentScore').set(0)
+    this.scoreRef.set({value:0, type:'none'})
     this.setState({
       currentScore: 0
     });
   }
 
-  updateScore(newScore) {
-    this.scoreRef.set(newScore);
+  updateScore(newScore, type) {
+    this.scoreRef.set({value:newScore, type:type});
     this.setState({currentScore:newScore});
   }
 
-  increaseScore() {
-    this.updateScore(this.state.currentScore + this.state.step);
+  increaseScore(type) {
+    this.updateScore(this.state.currentScore + this.state.step, type);
   }
   decreaseScore() {
-    this.updateScore(this.state.currentScore - this.state.step);
+    this.updateScore(this.state.currentScore - this.state.step, 'none');
   }
   clearScore() {
-    this.updateScore(0);
+    this.updateScore(0, 'none');
   }
 
   render() {
     return (
       <div>
-        <button onClick={this.increaseScore}>Más</button>
+        <button onClick={() => this.increaseScore('basura')}>Basura</button>
+        <button onClick={() => this.increaseScore('abono')}>Abono</button>
+        <button onClick={() => this.increaseScore('reciclaje')}>Reciclaje</button>
         <button onClick={this.decreaseScore}>Menos</button>
         <button onClick={this.sendScore}>Listo!</button>
         <button onClick={this.clearScore}>Borrar</button>
@@ -60,9 +62,9 @@ class ScoreController extends Component {
   }
 
   componentWillMount()  {
-    Database.ref('currentScore').on('value', (snapshot) => {
+    this.scoreRef.on('value', (snapshot) => {
       let data = snapshot.val();
-      this.setState({currentScore: data})
+      this.setState({currentScore: data.value})
     });
   }
 }
