@@ -12,7 +12,8 @@ class ScoreController extends Component {
     super(props);
     this.state = {
       currentScore: 0,
-      step: 1
+      step: 1,
+      max: 0
     };
     this.scoreRef = Database.ref('currentScoreV2');
     this.increaseScore = this.increaseScore.bind(this);
@@ -20,18 +21,19 @@ class ScoreController extends Component {
     this.clearScore = this.clearScore.bind(this);
     this.updateScore = this.updateScore.bind(this);
     this.sendScore = this.sendScore.bind(this);
+    this.reset = this.reset.bind(this);
   }
 
   sendScore() {
     Database.ref().child('previousScores').push(this.state.currentScore)
-    this.scoreRef.set({value:0, type:'none'})
+    this.scoreRef.set({value:0, type:'none', max: this.state.max>this.state.currentScore?this.state.max:this.state.currentScore})
     this.setState({
       currentScore: 0
     });
   }
 
   updateScore(newScore, type) {
-    this.scoreRef.set({value:newScore, type:type});
+    this.scoreRef.set({value:newScore, type:type, max:this.state.max});
     this.setState({currentScore:newScore});
   }
 
@@ -44,6 +46,9 @@ class ScoreController extends Component {
   clearScore() {
     this.updateScore(0, 'none');
   }
+  reset(){
+     this.scoreRef.set({value:0, type:'none', max:0});
+  }
 
   render() {
     return (
@@ -54,8 +59,10 @@ class ScoreController extends Component {
         <button onClick={this.decreaseScore}>Menos</button>
         <button onClick={this.sendScore}>Listo!</button>
         <button onClick={this.clearScore}>Borrar</button>
+        <button onClick={this.reset}>Reset</button>
 
-        <div>{this.state.currentScore}</div>
+        <div>Current score: {this.state.currentScore}</div>
+        <div>Max score: {this.state.max}</div>
       </div>
 
     )
@@ -64,7 +71,7 @@ class ScoreController extends Component {
   componentWillMount()  {
     this.scoreRef.on('value', (snapshot) => {
       let data = snapshot.val();
-      this.setState({currentScore: data.value})
+      this.setState({currentScore: data.value, max:data.max})
     });
   }
 }

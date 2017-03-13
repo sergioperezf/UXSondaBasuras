@@ -7,7 +7,8 @@ class Score extends Component {
     this.database = props.database;
     this.state = {
       currentScore: null,
-      type: 'none'
+      type: 'none',
+      max: 0
   };
 
   }
@@ -30,6 +31,9 @@ class Score extends Component {
       <div className="score_height">
         <div className="score_font">Puntaje: {this.state.currentScore}</div>
       </div>
+      <div className="max_score_height">
+        <div className="max_score_font">Máximo puntaje hoy: {this.state.max}</div>
+      </div>
       <div className="flexbox-class default-margin">
           <div className={basuraClass}></div>
           <div className={abonoClass}></div>
@@ -42,7 +46,7 @@ class Score extends Component {
   componentWillMount()  {
     this.database.ref('currentScoreV2').on('value', (snapshot) => {
       let data = snapshot.val();
-      this.setState({currentScore: data.value});
+      this.setState({currentScore: data.value, max: data.max});
       this.animate(data.type);
     });
   }

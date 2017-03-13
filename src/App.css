@@ -75,6 +75,16 @@ font-family: 'Bungee Inline', cursive;
 .score_height {
     height: 89px;
 }
+.max_score_font {
+  font-family: 'Black Ops One', cursive;
+  font-size: 21px;
+  color: red;
+  line-height: 21px;
+  vertical-align: center;
+}
+.max_score_height {
+    height: 34px;
+}
 
 
 @media (max-width: 900px) {
