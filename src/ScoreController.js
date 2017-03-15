@@ -41,7 +41,7 @@ class ScoreController extends Component {
     this.updateScore(this.state.currentScore + this.state.step, type);
   }
   decreaseScore() {
-    this.updateScore(this.state.currentScore - this.state.step, 'none');
+    this.updateScore(this.state.currentScore - this.state.step, 'bad');
   }
   clearScore() {
     this.updateScore(0, 'none');
