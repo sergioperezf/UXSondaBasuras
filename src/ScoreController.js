@@ -54,7 +54,6 @@ class ScoreController extends Component {
     return (
       <div>
         <button onClick={() => this.increaseScore('basura')}>Basura</button>
-        <button onClick={() => this.increaseScore('abono')}>Abono</button>
         <button onClick={() => this.increaseScore('reciclaje')}>Reciclaje</button>
         <button onClick={this.decreaseScore}>Menos</button>
         <button onClick={this.sendScore}>Listo!</button>

@@ -59,20 +59,12 @@ class Score extends Component {
             div className = "max_score_font" > Máximo puntaje hoy: {
                 this.state.max
             } < /div> <
-            /div> <
-            div className = "flexbox-class default-margin" >
-            <
-            div className = {
-                basuraClass
-            } > < /div> <
-            div className = {
-                abonoClass
-            } > < /div> <
-            div className = {
-                reciclajeClass
-            } > < /div> <
-            /div> <
             /div>
+            <div className = "flexbox-class default-margin" >
+                <div className = {basuraClass} > < /div>
+                
+                <div className = {reciclajeClass} > < /div>
+            </div> </div>
         );
     }
 

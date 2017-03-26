@@ -24,25 +24,25 @@ setTimeout(function(){
 }, 9000);*/
 
 
+
+
 class App extends Component {
     constructor(props) {
         super(props);
         this.database = Database;
-        
+
     };
 
 
   render() {
 
     return (
-      <div className="mdl-typography--text-center">
+      <div className="mdl-typography--text-center ">
         <h1>Juega por el planeta.</h1>
         <div className="logo-font android-sub-slogan">Deposita la basura en las cestas correspondientes y gana puntos.</div>
         <Score database={this.database} />
 
-        <div>
-            <LeaderBoard database={this.database}/>
-       </div>
+
       </div>
     );
   }
